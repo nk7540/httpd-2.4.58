@@ -23,7 +23,9 @@ $(PROGRAM_NAME): $(PROGRAM_DEPENDENCIES) $(PROGRAM_OBJECTS)
 	$(LINK) $(PROGRAM_LDFLAGS) $(PROGRAM_OBJECTS) $(PROGRAM_LDADD)
 
 libhttpd.so: $(PROGRAM_DEPENDENCIES) $(PROGRAM_OBJECTS)
-# $(PROGRAM_PRELINK)
-# $(LINK) -c -shared -rdynamic $(PROGRAM_LDFLAGS) $(PROGRAM_OBJECTS) $(PROGRAM_LDADD)
 	$(LIBTOOL) --mode=compile $(COMPILE) $(LTCFLAGS) -c $(top_srcdir)/server/buildmark.c && touch buildmark.lo
-	/usr/local/apache/apr/build-1/libtool --silent --mode=link gcc -shared -rpath $(top_srcdir) -g -O2 -pthread -o libhttpd.la $(PROGRAM_LDFLAGS) $(PROGRAM_OBJECTS) $(PROGRAM_LDADD)
+	/usr/local/apache/apr/build-1/libtool --silent --mode=link gcc -shared -rpath $(top_srcdir) -g -O2 -pthread -o libhttpd.la $(PROGRAM_LDFLAGS) $(PROGRAM_OBJECTS) $(PROGRAM_LDADD) -L/home/cs_gakusei/work/cdschecker -lmodel
+
+libhttpd.a: $(PROGRAM_DEPENDENCIES) $(PROGRAM_OBJECTS)
+	$(LIBTOOL) --mode=compile $(COMPILE) $(LTCFLAGS) -c $(top_srcdir)/server/buildmark.c && touch buildmark.lo
+	/usr/local/apache/apr/build-1/libtool --silent --mode=link gcc -static -rpath $(top_srcdir) -g -O2 -pthread -o libhttpd.la $(PROGRAM_LDFLAGS) $(PROGRAM_OBJECTS) $(PROGRAM_LDADD) -L/home/cs_gakusei/work/cdschecker -lmodel
