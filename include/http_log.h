@@ -27,7 +27,8 @@
 #define APACHE_HTTP_LOG_H
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 #include "apr_thread_proc.h"
@@ -40,52 +41,52 @@ extern "C" {
 #define LOG_PRIMASK 7
 #endif
 
-#define APLOG_EMERG     LOG_EMERG       /* system is unusable */
-#define APLOG_ALERT     LOG_ALERT       /* action must be taken immediately */
-#define APLOG_CRIT      LOG_CRIT        /* critical conditions */
-#define APLOG_ERR       LOG_ERR         /* error conditions */
-#define APLOG_WARNING   LOG_WARNING     /* warning conditions */
-#define APLOG_NOTICE    LOG_NOTICE      /* normal but significant condition */
-#define APLOG_INFO      LOG_INFO        /* informational */
-#define APLOG_DEBUG     LOG_DEBUG       /* debug-level messages */
-#define APLOG_TRACE1   (LOG_DEBUG + 1)  /* trace-level 1 messages */
-#define APLOG_TRACE2   (LOG_DEBUG + 2)  /* trace-level 2 messages */
-#define APLOG_TRACE3   (LOG_DEBUG + 3)  /* trace-level 3 messages */
-#define APLOG_TRACE4   (LOG_DEBUG + 4)  /* trace-level 4 messages */
-#define APLOG_TRACE5   (LOG_DEBUG + 5)  /* trace-level 5 messages */
-#define APLOG_TRACE6   (LOG_DEBUG + 6)  /* trace-level 6 messages */
-#define APLOG_TRACE7   (LOG_DEBUG + 7)  /* trace-level 7 messages */
-#define APLOG_TRACE8   (LOG_DEBUG + 8)  /* trace-level 8 messages */
+#define APLOG_EMERG LOG_EMERG        /* system is unusable */
+#define APLOG_ALERT LOG_ALERT        /* action must be taken immediately */
+#define APLOG_CRIT LOG_CRIT          /* critical conditions */
+#define APLOG_ERR LOG_ERR            /* error conditions */
+#define APLOG_WARNING LOG_WARNING    /* warning conditions */
+#define APLOG_NOTICE LOG_NOTICE      /* normal but significant condition */
+#define APLOG_INFO LOG_INFO          /* informational */
+#define APLOG_DEBUG LOG_DEBUG        /* debug-level messages */
+#define APLOG_TRACE1 (LOG_DEBUG + 1) /* trace-level 1 messages */
+#define APLOG_TRACE2 (LOG_DEBUG + 2) /* trace-level 2 messages */
+#define APLOG_TRACE3 (LOG_DEBUG + 3) /* trace-level 3 messages */
+#define APLOG_TRACE4 (LOG_DEBUG + 4) /* trace-level 4 messages */
+#define APLOG_TRACE5 (LOG_DEBUG + 5) /* trace-level 5 messages */
+#define APLOG_TRACE6 (LOG_DEBUG + 6) /* trace-level 6 messages */
+#define APLOG_TRACE7 (LOG_DEBUG + 7) /* trace-level 7 messages */
+#define APLOG_TRACE8 (LOG_DEBUG + 8) /* trace-level 8 messages */
 
-#define APLOG_LEVELMASK 15     /* mask off the level value */
+#define APLOG_LEVELMASK 15 /* mask off the level value */
 
 #else
 
-#define APLOG_EMERG      0     /* system is unusable */
-#define APLOG_ALERT      1     /* action must be taken immediately */
-#define APLOG_CRIT       2     /* critical conditions */
-#define APLOG_ERR        3     /* error conditions */
-#define APLOG_WARNING    4     /* warning conditions */
-#define APLOG_NOTICE     5     /* normal but significant condition */
-#define APLOG_INFO       6     /* informational */
-#define APLOG_DEBUG      7     /* debug-level messages */
-#define APLOG_TRACE1     8     /* trace-level 1 messages */
-#define APLOG_TRACE2     9     /* trace-level 2 messages */
-#define APLOG_TRACE3    10     /* trace-level 3 messages */
-#define APLOG_TRACE4    11     /* trace-level 4 messages */
-#define APLOG_TRACE5    12     /* trace-level 5 messages */
-#define APLOG_TRACE6    13     /* trace-level 6 messages */
-#define APLOG_TRACE7    14     /* trace-level 7 messages */
-#define APLOG_TRACE8    15     /* trace-level 8 messages */
+#define APLOG_EMERG 0   /* system is unusable */
+#define APLOG_ALERT 1   /* action must be taken immediately */
+#define APLOG_CRIT 2    /* critical conditions */
+#define APLOG_ERR 3     /* error conditions */
+#define APLOG_WARNING 4 /* warning conditions */
+#define APLOG_NOTICE 5  /* normal but significant condition */
+#define APLOG_INFO 6    /* informational */
+#define APLOG_DEBUG 7   /* debug-level messages */
+#define APLOG_TRACE1 8  /* trace-level 1 messages */
+#define APLOG_TRACE2 9  /* trace-level 2 messages */
+#define APLOG_TRACE3 10 /* trace-level 3 messages */
+#define APLOG_TRACE4 11 /* trace-level 4 messages */
+#define APLOG_TRACE5 12 /* trace-level 5 messages */
+#define APLOG_TRACE6 13 /* trace-level 6 messages */
+#define APLOG_TRACE7 14 /* trace-level 7 messages */
+#define APLOG_TRACE8 15 /* trace-level 8 messages */
 
-#define APLOG_LEVELMASK 15     /* mask off the level value */
+#define APLOG_LEVELMASK 15 /* mask off the level value */
 
 #endif
 
 /* APLOG_NOERRNO is ignored and should not be used.  It will be
  * removed in a future release of Apache.
  */
-#define APLOG_NOERRNO           (APLOG_LEVELMASK + 1)
+#define APLOG_NOERRNO (APLOG_LEVELMASK + 1)
 
 /** Use APLOG_TOCLIENT on ap_log_rerror() to give content
  * handlers the option of including the error text in the
@@ -99,13 +100,13 @@ extern "C" {
  * Note: Client generated text streams sent back to the client MUST
  * be escaped to prevent CSS attacks.
  */
-#define APLOG_TOCLIENT          ((APLOG_LEVELMASK + 1) * 2)
+#define APLOG_TOCLIENT ((APLOG_LEVELMASK + 1) * 2)
 
 /* normal but significant condition on startup, usually printed to stderr */
-#define APLOG_STARTUP           ((APLOG_LEVELMASK + 1) * 4)
+#define APLOG_STARTUP ((APLOG_LEVELMASK + 1) * 4)
 
 #ifndef DEFAULT_LOGLEVEL
-#define DEFAULT_LOGLEVEL        APLOG_WARNING
+#define DEFAULT_LOGLEVEL APLOG_WARNING
 #endif
 
 /**
@@ -114,7 +115,7 @@ extern "C" {
  * number. It creates a tag of the form "AH02182: "
  * See docs/log-message-tags/README for details.
  */
-#define APLOGNO(n)              "AH" #n ": "
+#define APLOGNO(n) "AH" #n ": "
 
 /**
  * APLOG_NO_MODULE may be passed as module_index to ap_log_error() and related
@@ -126,17 +127,18 @@ extern "C" {
  * @see APLOG_MODULE_INDEX
  * @see ap_log_error
  */
-#define APLOG_NO_MODULE         -1
+#define APLOG_NO_MODULE -1
 
 #ifdef __cplusplus
-/**
- * C++ modules must invoke ::APLOG_USE_MODULE or ::AP_DECLARE_MODULE in
- * every file which uses ap_log_* before the first use of ::APLOG_MARK
- * or ::APLOG_MODULE_INDEX.
- * (C modules *should* do that as well, to enable module-specific log
- * levels. C modules need not obey the ordering, though).
- */
-#else /* __cplusplus */
+    /**
+     * C++ modules must invoke ::APLOG_USE_MODULE or ::AP_DECLARE_MODULE in
+     * every file which uses ap_log_* before the first use of ::APLOG_MARK
+     * or ::APLOG_MODULE_INDEX.
+     * (C modules *should* do that as well, to enable module-specific log
+     * levels. C modules need not obey the ordering, though).
+     */
+    static int *const aplog_module_index = NULL;
+#else  /* __cplusplus */
 /**
  * Constant to store module_index for the current file.
  * Objects with static storage duration are set to NULL if not
@@ -145,7 +147,7 @@ extern "C" {
  * ::AP_DECLARE_MODULE macro, we can safely fall back to
  * use ::APLOG_NO_MODULE. This variable will usually be optimized away.
  */
-static int * const aplog_module_index;
+static int *const aplog_module_index;
 #endif /* __cplusplus */
 
 /**
@@ -165,7 +167,7 @@ static int * const aplog_module_index;
 #ifdef __cplusplus
 #define APLOG_MODULE_INDEX (*aplog_module_index)
 #else /* __cplusplus */
-#define APLOG_MODULE_INDEX  \
+#define APLOG_MODULE_INDEX \
     (aplog_module_index ? *aplog_module_index : APLOG_NO_MODULE)
 #endif /* __cplusplus */
 
@@ -179,91 +181,82 @@ static int * const aplog_module_index;
 #define APLOG_MAX_LOGLEVEL
 #endif
 #ifndef APLOG_MAX_LOGLEVEL
-#define APLOG_MODULE_IS_LEVEL(s,module_index,level)              \
-          ( (((level)&APLOG_LEVELMASK) <= APLOG_NOTICE) ||       \
-            (s == NULL) ||                                       \
-            (ap_get_server_module_loglevel(s, module_index)      \
-             >= ((level)&APLOG_LEVELMASK) ) )
-#define APLOG_C_MODULE_IS_LEVEL(c,module_index,level)            \
-          ( (((level)&APLOG_LEVELMASK) <= APLOG_NOTICE) ||       \
-            (ap_get_conn_module_loglevel(c, module_index)        \
-             >= ((level)&APLOG_LEVELMASK) ) )
-#define APLOG_CS_MODULE_IS_LEVEL(c,s,module_index,level)            \
-          ( (((level)&APLOG_LEVELMASK) <= APLOG_NOTICE) ||          \
-            (ap_get_conn_server_module_loglevel(c, s, module_index) \
-             >= ((level)&APLOG_LEVELMASK) ) )
-#define APLOG_R_MODULE_IS_LEVEL(r,module_index,level)            \
-          ( (((level)&APLOG_LEVELMASK) <= APLOG_NOTICE) ||       \
-            (ap_get_request_module_loglevel(r, module_index)     \
-             >= ((level)&APLOG_LEVELMASK) ) )
+#define APLOG_MODULE_IS_LEVEL(s, module_index, level) \
+    ((((level) & APLOG_LEVELMASK) <= APLOG_NOTICE) || \
+     (s == NULL) ||                                   \
+     (ap_get_server_module_loglevel(s, module_index) >= ((level) & APLOG_LEVELMASK)))
+#define APLOG_C_MODULE_IS_LEVEL(c, module_index, level) \
+    ((((level) & APLOG_LEVELMASK) <= APLOG_NOTICE) ||   \
+     (ap_get_conn_module_loglevel(c, module_index) >= ((level) & APLOG_LEVELMASK)))
+#define APLOG_CS_MODULE_IS_LEVEL(c, s, module_index, level) \
+    ((((level) & APLOG_LEVELMASK) <= APLOG_NOTICE) ||       \
+     (ap_get_conn_server_module_loglevel(c, s, module_index) >= ((level) & APLOG_LEVELMASK)))
+#define APLOG_R_MODULE_IS_LEVEL(r, module_index, level) \
+    ((((level) & APLOG_LEVELMASK) <= APLOG_NOTICE) ||   \
+     (ap_get_request_module_loglevel(r, module_index) >= ((level) & APLOG_LEVELMASK)))
 #else
-#define APLOG_MODULE_IS_LEVEL(s,module_index,level)              \
-        ( (((level)&APLOG_LEVELMASK) <= APLOG_MAX_LOGLEVEL) &&   \
-          ( (((level)&APLOG_LEVELMASK) <= APLOG_NOTICE) ||       \
-            (s == NULL) ||                                       \
-            (ap_get_server_module_loglevel(s, module_index)      \
-             >= ((level)&APLOG_LEVELMASK) ) ) )
-#define APLOG_CS_MODULE_IS_LEVEL(c,s,module_index,level)            \
-        ( (((level)&APLOG_LEVELMASK) <= APLOG_MAX_LOGLEVEL) &&      \
-          ( (((level)&APLOG_LEVELMASK) <= APLOG_NOTICE) ||          \
-            (ap_get_conn_server_module_loglevel(c, s, module_index) \
-             >= ((level)&APLOG_LEVELMASK) ) ) )
-#define APLOG_C_MODULE_IS_LEVEL(c,module_index,level)            \
-        ( (((level)&APLOG_LEVELMASK) <= APLOG_MAX_LOGLEVEL) &&   \
-          ( (((level)&APLOG_LEVELMASK) <= APLOG_NOTICE) ||       \
-            (ap_get_conn_module_loglevel(c, module_index)        \
-             >= ((level)&APLOG_LEVELMASK) ) ) )
-#define APLOG_R_MODULE_IS_LEVEL(r,module_index,level)            \
-        ( (((level)&APLOG_LEVELMASK) <= APLOG_MAX_LOGLEVEL) &&   \
-          ( (((level)&APLOG_LEVELMASK) <= APLOG_NOTICE) ||       \
-            (ap_get_request_module_loglevel(r, module_index)     \
-             >= ((level)&APLOG_LEVELMASK) ) ) )
+#define APLOG_MODULE_IS_LEVEL(s, module_index, level)       \
+    ((((level) & APLOG_LEVELMASK) <= APLOG_MAX_LOGLEVEL) && \
+     ((((level) & APLOG_LEVELMASK) <= APLOG_NOTICE) ||      \
+      (s == NULL) ||                                        \
+      (ap_get_server_module_loglevel(s, module_index) >= ((level) & APLOG_LEVELMASK))))
+#define APLOG_CS_MODULE_IS_LEVEL(c, s, module_index, level) \
+    ((((level) & APLOG_LEVELMASK) <= APLOG_MAX_LOGLEVEL) && \
+     ((((level) & APLOG_LEVELMASK) <= APLOG_NOTICE) ||      \
+      (ap_get_conn_server_module_loglevel(c, s, module_index) >= ((level) & APLOG_LEVELMASK))))
+#define APLOG_C_MODULE_IS_LEVEL(c, module_index, level)     \
+    ((((level) & APLOG_LEVELMASK) <= APLOG_MAX_LOGLEVEL) && \
+     ((((level) & APLOG_LEVELMASK) <= APLOG_NOTICE) ||      \
+      (ap_get_conn_module_loglevel(c, module_index) >= ((level) & APLOG_LEVELMASK))))
+#define APLOG_R_MODULE_IS_LEVEL(r, module_index, level)     \
+    ((((level) & APLOG_LEVELMASK) <= APLOG_MAX_LOGLEVEL) && \
+     ((((level) & APLOG_LEVELMASK) <= APLOG_NOTICE) ||      \
+      (ap_get_request_module_loglevel(r, module_index) >= ((level) & APLOG_LEVELMASK))))
 #endif
 
-#define APLOG_IS_LEVEL(s,level)     \
-    APLOG_MODULE_IS_LEVEL(s,APLOG_MODULE_INDEX,level)
-#define APLOG_C_IS_LEVEL(c,level)   \
-    APLOG_C_MODULE_IS_LEVEL(c,APLOG_MODULE_INDEX,level)
-#define APLOG_CS_IS_LEVEL(c,s,level) \
-    APLOG_CS_MODULE_IS_LEVEL(c,s,APLOG_MODULE_INDEX,level)
-#define APLOG_R_IS_LEVEL(r,level)   \
-    APLOG_R_MODULE_IS_LEVEL(r,APLOG_MODULE_INDEX,level)
+#define APLOG_IS_LEVEL(s, level) \
+    APLOG_MODULE_IS_LEVEL(s, APLOG_MODULE_INDEX, level)
+#define APLOG_C_IS_LEVEL(c, level) \
+    APLOG_C_MODULE_IS_LEVEL(c, APLOG_MODULE_INDEX, level)
+#define APLOG_CS_IS_LEVEL(c, s, level) \
+    APLOG_CS_MODULE_IS_LEVEL(c, s, APLOG_MODULE_INDEX, level)
+#define APLOG_R_IS_LEVEL(r, level) \
+    APLOG_R_MODULE_IS_LEVEL(r, APLOG_MODULE_INDEX, level)
 
+#define APLOGinfo(s) APLOG_IS_LEVEL(s, APLOG_INFO)
+#define APLOGdebug(s) APLOG_IS_LEVEL(s, APLOG_DEBUG)
+#define APLOGtrace1(s) APLOG_IS_LEVEL(s, APLOG_TRACE1)
+#define APLOGtrace2(s) APLOG_IS_LEVEL(s, APLOG_TRACE2)
+#define APLOGtrace3(s) APLOG_IS_LEVEL(s, APLOG_TRACE3)
+#define APLOGtrace4(s) APLOG_IS_LEVEL(s, APLOG_TRACE4)
+#define APLOGtrace5(s) APLOG_IS_LEVEL(s, APLOG_TRACE5)
+#define APLOGtrace6(s) APLOG_IS_LEVEL(s, APLOG_TRACE6)
+#define APLOGtrace7(s) APLOG_IS_LEVEL(s, APLOG_TRACE7)
+#define APLOGtrace8(s) APLOG_IS_LEVEL(s, APLOG_TRACE8)
 
-#define APLOGinfo(s)                APLOG_IS_LEVEL(s,APLOG_INFO)
-#define APLOGdebug(s)               APLOG_IS_LEVEL(s,APLOG_DEBUG)
-#define APLOGtrace1(s)              APLOG_IS_LEVEL(s,APLOG_TRACE1)
-#define APLOGtrace2(s)              APLOG_IS_LEVEL(s,APLOG_TRACE2)
-#define APLOGtrace3(s)              APLOG_IS_LEVEL(s,APLOG_TRACE3)
-#define APLOGtrace4(s)              APLOG_IS_LEVEL(s,APLOG_TRACE4)
-#define APLOGtrace5(s)              APLOG_IS_LEVEL(s,APLOG_TRACE5)
-#define APLOGtrace6(s)              APLOG_IS_LEVEL(s,APLOG_TRACE6)
-#define APLOGtrace7(s)              APLOG_IS_LEVEL(s,APLOG_TRACE7)
-#define APLOGtrace8(s)              APLOG_IS_LEVEL(s,APLOG_TRACE8)
+#define APLOGrinfo(r) APLOG_R_IS_LEVEL(r, APLOG_INFO)
+#define APLOGrdebug(r) APLOG_R_IS_LEVEL(r, APLOG_DEBUG)
+#define APLOGrtrace1(r) APLOG_R_IS_LEVEL(r, APLOG_TRACE1)
+#define APLOGrtrace2(r) APLOG_R_IS_LEVEL(r, APLOG_TRACE2)
+#define APLOGrtrace3(r) APLOG_R_IS_LEVEL(r, APLOG_TRACE3)
+#define APLOGrtrace4(r) APLOG_R_IS_LEVEL(r, APLOG_TRACE4)
+#define APLOGrtrace5(r) APLOG_R_IS_LEVEL(r, APLOG_TRACE5)
+#define APLOGrtrace6(r) APLOG_R_IS_LEVEL(r, APLOG_TRACE6)
+#define APLOGrtrace7(r) APLOG_R_IS_LEVEL(r, APLOG_TRACE7)
+#define APLOGrtrace8(r) APLOG_R_IS_LEVEL(r, APLOG_TRACE8)
 
-#define APLOGrinfo(r)               APLOG_R_IS_LEVEL(r,APLOG_INFO)
-#define APLOGrdebug(r)              APLOG_R_IS_LEVEL(r,APLOG_DEBUG)
-#define APLOGrtrace1(r)             APLOG_R_IS_LEVEL(r,APLOG_TRACE1)
-#define APLOGrtrace2(r)             APLOG_R_IS_LEVEL(r,APLOG_TRACE2)
-#define APLOGrtrace3(r)             APLOG_R_IS_LEVEL(r,APLOG_TRACE3)
-#define APLOGrtrace4(r)             APLOG_R_IS_LEVEL(r,APLOG_TRACE4)
-#define APLOGrtrace5(r)             APLOG_R_IS_LEVEL(r,APLOG_TRACE5)
-#define APLOGrtrace6(r)             APLOG_R_IS_LEVEL(r,APLOG_TRACE6)
-#define APLOGrtrace7(r)             APLOG_R_IS_LEVEL(r,APLOG_TRACE7)
-#define APLOGrtrace8(r)             APLOG_R_IS_LEVEL(r,APLOG_TRACE8)
+#define APLOGcinfo(c) APLOG_C_IS_LEVEL(c, APLOG_INFO)
+#define APLOGcdebug(c) APLOG_C_IS_LEVEL(c, APLOG_DEBUG)
+#define APLOGctrace1(c) APLOG_C_IS_LEVEL(c, APLOG_TRACE1)
+#define APLOGctrace2(c) APLOG_C_IS_LEVEL(c, APLOG_TRACE2)
+#define APLOGctrace3(c) APLOG_C_IS_LEVEL(c, APLOG_TRACE3)
+#define APLOGctrace4(c) APLOG_C_IS_LEVEL(c, APLOG_TRACE4)
+#define APLOGctrace5(c) APLOG_C_IS_LEVEL(c, APLOG_TRACE5)
+#define APLOGctrace6(c) APLOG_C_IS_LEVEL(c, APLOG_TRACE6)
+#define APLOGctrace7(c) APLOG_C_IS_LEVEL(c, APLOG_TRACE7)
+#define APLOGctrace8(c) APLOG_C_IS_LEVEL(c, APLOG_TRACE8)
 
-#define APLOGcinfo(c)               APLOG_C_IS_LEVEL(c,APLOG_INFO)
-#define APLOGcdebug(c)              APLOG_C_IS_LEVEL(c,APLOG_DEBUG)
-#define APLOGctrace1(c)             APLOG_C_IS_LEVEL(c,APLOG_TRACE1)
-#define APLOGctrace2(c)             APLOG_C_IS_LEVEL(c,APLOG_TRACE2)
-#define APLOGctrace3(c)             APLOG_C_IS_LEVEL(c,APLOG_TRACE3)
-#define APLOGctrace4(c)             APLOG_C_IS_LEVEL(c,APLOG_TRACE4)
-#define APLOGctrace5(c)             APLOG_C_IS_LEVEL(c,APLOG_TRACE5)
-#define APLOGctrace6(c)             APLOG_C_IS_LEVEL(c,APLOG_TRACE6)
-#define APLOGctrace7(c)             APLOG_C_IS_LEVEL(c,APLOG_TRACE7)
-#define APLOGctrace8(c)             APLOG_C_IS_LEVEL(c,APLOG_TRACE8)
-
-AP_DECLARE_DATA extern int ap_default_loglevel;
+    AP_DECLARE_DATA extern int ap_default_loglevel;
 
 /**
  * APLOG_MARK is a convenience macro for use as the first three parameters in
@@ -280,43 +273,45 @@ AP_DECLARE_DATA extern int ap_default_loglevel;
  * @see ap_log_rerror
  * @see ap_log_cserror
  */
-#define APLOG_MARK     __FILE__,__LINE__,APLOG_MODULE_INDEX
+#define APLOG_MARK __FILE__, __LINE__, APLOG_MODULE_INDEX
 
-/**
- * Set up for logging to stderr.
- * @param p The pool to allocate out of
- */
-AP_DECLARE(void) ap_open_stderr_log(apr_pool_t *p);
+    /**
+     * Set up for logging to stderr.
+     * @param p The pool to allocate out of
+     */
+    AP_DECLARE(void)
+    ap_open_stderr_log(apr_pool_t *p);
 
-/**
- * Replace logging to stderr with logging to the given file.
- * @param p The pool to allocate out of
- * @param file Name of the file to log stderr output
- */
-AP_DECLARE(apr_status_t) ap_replace_stderr_log(apr_pool_t *p,
-                                               const char *file);
+    /**
+     * Replace logging to stderr with logging to the given file.
+     * @param p The pool to allocate out of
+     * @param file Name of the file to log stderr output
+     */
+    AP_DECLARE(apr_status_t)
+    ap_replace_stderr_log(apr_pool_t *p,
+                          const char *file);
 
-/**
- * Open the error log and replace stderr with it.
- * @param pconf Not used
- * @param plog  The pool to allocate the logs from
- * @param ptemp Pool used for temporary allocations
- * @param s_main The main server
- * @note ap_open_logs isn't expected to be used by modules, it is
- * an internal core function
- */
-int ap_open_logs(apr_pool_t *pconf, apr_pool_t *plog,
-                 apr_pool_t *ptemp, server_rec *s_main);
+    /**
+     * Open the error log and replace stderr with it.
+     * @param pconf Not used
+     * @param plog  The pool to allocate the logs from
+     * @param ptemp Pool used for temporary allocations
+     * @param s_main The main server
+     * @note ap_open_logs isn't expected to be used by modules, it is
+     * an internal core function
+     */
+    int ap_open_logs(apr_pool_t *pconf, apr_pool_t *plog,
+                     apr_pool_t *ptemp, server_rec *s_main);
 
-/**
- * Perform special processing for piped loggers in MPM child
- * processes.
- * @param p Not used
- * @param s Not used
- * @note ap_logs_child_init is not for use by modules; it is an
- * internal core function
- */
-void ap_logs_child_init(apr_pool_t *p, server_rec *s);
+    /**
+     * Perform special processing for piped loggers in MPM child
+     * processes.
+     * @param p Not used
+     * @param s Not used
+     * @note ap_logs_child_init is not for use by modules; it is an
+     * internal core function
+     */
+    void ap_logs_child_init(apr_pool_t *p, server_rec *s);
 
 /*
  * The primary logging functions, ap_log_error, ap_log_rerror, ap_log_cerror,
@@ -354,25 +349,30 @@ void ap_logs_child_init(apr_pool_t *p, server_rec *s);
  * untrusted data.
  */
 #ifdef DOXYGEN
-AP_DECLARE(void) ap_log_error(const char *file, int line, int module_index,
-                              int level, apr_status_t status,
-                              const server_rec *s, const char *fmt, ...);
+    AP_DECLARE(void)
+    ap_log_error(const char *file, int line, int module_index,
+                 int level, apr_status_t status,
+                 const server_rec *s, const char *fmt, ...);
 #else
 #ifdef AP_HAVE_C99
 /* need additional step to expand APLOG_MARK first */
 #define ap_log_error(...) ap_log_error__(__VA_ARGS__)
 /* need server_rec *sr = ... for the case if s is verbatim NULL */
-#define ap_log_error__(file, line, mi, level, status, s, ...)           \
-    do { const server_rec *sr__ = s; if (APLOG_MODULE_IS_LEVEL(sr__, mi, level)) \
-             ap_log_error_(file, line, mi, level, status, sr__, __VA_ARGS__);    \
-    } while(0)
+#define ap_log_error__(file, line, mi, level, status, s, ...)                \
+    do                                                                       \
+    {                                                                        \
+        const server_rec *sr__ = s;                                          \
+        if (APLOG_MODULE_IS_LEVEL(sr__, mi, level))                          \
+            ap_log_error_(file, line, mi, level, status, sr__, __VA_ARGS__); \
+    } while (0)
 #else
 #define ap_log_error ap_log_error_
 #endif
-AP_DECLARE(void) ap_log_error_(const char *file, int line, int module_index,
-                               int level, apr_status_t status,
-                               const server_rec *s, const char *fmt, ...)
-                              __attribute__((format(printf,7,8)));
+AP_DECLARE(void)
+ap_log_error_(const char *file, int line, int module_index,
+              int level, apr_status_t status,
+              const server_rec *s, const char *fmt, ...)
+    __attribute__((format(printf, 7, 8)));
 #endif
 
 /**
@@ -397,24 +397,29 @@ AP_DECLARE(void) ap_log_error_(const char *file, int line, int module_index,
  * untrusted data.
  */
 #ifdef DOXYGEN
-AP_DECLARE(void) ap_log_perror(const char *file, int line, int module_index,
-                               int level, apr_status_t status, apr_pool_t *p,
-                               const char *fmt, ...);
+    AP_DECLARE(void)
+    ap_log_perror(const char *file, int line, int module_index,
+                  int level, apr_status_t status, apr_pool_t *p,
+                  const char *fmt, ...);
 #else
 #if defined(AP_HAVE_C99) && defined(APLOG_MAX_LOGLEVEL)
 /* need additional step to expand APLOG_MARK first */
 #define ap_log_perror(...) ap_log_perror__(__VA_ARGS__)
-#define ap_log_perror__(file, line, mi, level, status, p, ...)            \
-    do { if ((level) <= APLOG_MAX_LOGLEVEL )                              \
-             ap_log_perror_(file, line, mi, level, status, p,             \
-                            __VA_ARGS__); } while(0)
+#define ap_log_perror__(file, line, mi, level, status, p, ...) \
+    do                                                         \
+    {                                                          \
+        if ((level) <= APLOG_MAX_LOGLEVEL)                     \
+            ap_log_perror_(file, line, mi, level, status, p,   \
+                           __VA_ARGS__);                       \
+    } while (0)
 #else
 #define ap_log_perror ap_log_perror_
 #endif
-AP_DECLARE(void) ap_log_perror_(const char *file, int line, int module_index,
-                                int level, apr_status_t status, apr_pool_t *p,
-                                const char *fmt, ...)
-                               __attribute__((format(printf,7,8)));
+AP_DECLARE(void)
+ap_log_perror_(const char *file, int line, int module_index,
+               int level, apr_status_t status, apr_pool_t *p,
+               const char *fmt, ...)
+    __attribute__((format(printf, 7, 8)));
 #endif
 
 /**
@@ -439,24 +444,28 @@ AP_DECLARE(void) ap_log_perror_(const char *file, int line, int module_index,
  * untrusted data.
  */
 #ifdef DOXYGEN
-AP_DECLARE(void) ap_log_rerror(const char *file, int line, int module_index,
-                               int level, apr_status_t status,
-                               const request_rec *r, const char *fmt, ...);
+    AP_DECLARE(void)
+    ap_log_rerror(const char *file, int line, int module_index,
+                  int level, apr_status_t status,
+                  const request_rec *r, const char *fmt, ...);
 #else
 #ifdef AP_HAVE_C99
 /* need additional step to expand APLOG_MARK first */
 #define ap_log_rerror(...) ap_log_rerror__(__VA_ARGS__)
-#define ap_log_rerror__(file, line, mi, level, status, r, ...)              \
-    do { if (APLOG_R_MODULE_IS_LEVEL(r, mi, level))                         \
-             ap_log_rerror_(file, line, mi, level, status, r, __VA_ARGS__); \
-    } while(0)
+#define ap_log_rerror__(file, line, mi, level, status, r, ...)             \
+    do                                                                     \
+    {                                                                      \
+        if (APLOG_R_MODULE_IS_LEVEL(r, mi, level))                         \
+            ap_log_rerror_(file, line, mi, level, status, r, __VA_ARGS__); \
+    } while (0)
 #else
 #define ap_log_rerror ap_log_rerror_
 #endif
-AP_DECLARE(void) ap_log_rerror_(const char *file, int line, int module_index,
-                                int level, apr_status_t status,
-                                const request_rec *r, const char *fmt, ...)
-                                __attribute__((format(printf,7,8)));
+AP_DECLARE(void)
+ap_log_rerror_(const char *file, int line, int module_index,
+               int level, apr_status_t status,
+               const request_rec *r, const char *fmt, ...)
+    __attribute__((format(printf, 7, 8)));
 #endif
 
 /**
@@ -483,24 +492,28 @@ AP_DECLARE(void) ap_log_rerror_(const char *file, int line, int module_index,
  * untrusted data.
  */
 #ifdef DOXYGEN
-AP_DECLARE(void) ap_log_cerror(const char *file, int line, int module_index,
-                               int level, apr_status_t status,
-                               const conn_rec *c, const char *fmt, ...);
+    AP_DECLARE(void)
+    ap_log_cerror(const char *file, int line, int module_index,
+                  int level, apr_status_t status,
+                  const conn_rec *c, const char *fmt, ...);
 #else
 #ifdef AP_HAVE_C99
 /* need additional step to expand APLOG_MARK first */
 #define ap_log_cerror(...) ap_log_cerror__(__VA_ARGS__)
-#define ap_log_cerror__(file, line, mi, level, status, c, ...)              \
-    do { if (APLOG_C_MODULE_IS_LEVEL(c, mi, level))                         \
-             ap_log_cerror_(file, line, mi, level, status, c, __VA_ARGS__); \
-    } while(0)
+#define ap_log_cerror__(file, line, mi, level, status, c, ...)             \
+    do                                                                     \
+    {                                                                      \
+        if (APLOG_C_MODULE_IS_LEVEL(c, mi, level))                         \
+            ap_log_cerror_(file, line, mi, level, status, c, __VA_ARGS__); \
+    } while (0)
 #else
 #define ap_log_cerror ap_log_cerror_
 #endif
-AP_DECLARE(void) ap_log_cerror_(const char *file, int line, int module_index,
-                                int level, apr_status_t status,
-                                const conn_rec *c, const char *fmt, ...)
-                                __attribute__((format(printf,7,8)));
+AP_DECLARE(void)
+ap_log_cerror_(const char *file, int line, int module_index,
+               int level, apr_status_t status,
+               const conn_rec *c, const char *fmt, ...)
+    __attribute__((format(printf, 7, 8)));
 #endif
 
 /**
@@ -529,27 +542,31 @@ AP_DECLARE(void) ap_log_cerror_(const char *file, int line, int module_index,
  * untrusted data.
  */
 #ifdef DOXYGEN
-AP_DECLARE(void) ap_log_cserror(const char *file, int line, int module_index,
-                                int level, apr_status_t status,
-                                const conn_rec *c, const server_rec *s,
-                                const char *fmt, ...);
+    AP_DECLARE(void)
+    ap_log_cserror(const char *file, int line, int module_index,
+                   int level, apr_status_t status,
+                   const conn_rec *c, const server_rec *s,
+                   const char *fmt, ...);
 #else
 #ifdef AP_HAVE_C99
 /* need additional step to expand APLOG_MARK first */
 #define ap_log_cserror(...) ap_log_cserror__(__VA_ARGS__)
-#define ap_log_cserror__(file, line, mi, level, status, c, s, ...)  \
-    do { if (APLOG_CS_MODULE_IS_LEVEL(c, s, mi, level))             \
-             ap_log_cserror_(file, line, mi, level, status, c, s,   \
-                             __VA_ARGS__);                          \
-    } while(0)
+#define ap_log_cserror__(file, line, mi, level, status, c, s, ...) \
+    do                                                             \
+    {                                                              \
+        if (APLOG_CS_MODULE_IS_LEVEL(c, s, mi, level))             \
+            ap_log_cserror_(file, line, mi, level, status, c, s,   \
+                            __VA_ARGS__);                          \
+    } while (0)
 #else
 #define ap_log_cserror ap_log_cserror_
 #endif
-AP_DECLARE(void) ap_log_cserror_(const char *file, int line, int module_index,
-                                 int level, apr_status_t status,
-                                 const conn_rec *c, const server_rec *s,
-                                 const char *fmt, ...)
-                             __attribute__((format(printf,8,9)));
+AP_DECLARE(void)
+ap_log_cserror_(const char *file, int line, int module_index,
+                int level, apr_status_t status,
+                const conn_rec *c, const server_rec *s,
+                const char *fmt, ...)
+    __attribute__((format(printf, 8, 9)));
 #endif
 
 /*
@@ -565,8 +582,8 @@ AP_DECLARE(void) ap_log_cserror_(const char *file, int line, int module_index,
  * AP_LOG_DATA_SHOW_OFFSET - prefix each line with hex offset from the start
  * of the buffer
  */
-#define AP_LOG_DATA_DEFAULT       0
-#define AP_LOG_DATA_SHOW_OFFSET   1
+#define AP_LOG_DATA_DEFAULT 0
+#define AP_LOG_DATA_SHOW_OFFSET 1
 
 /**
  * ap_log_data() - log buffers which are not related to a particular request
@@ -588,24 +605,29 @@ AP_DECLARE(void) ap_log_cserror_(const char *file, int line, int module_index,
  * this function.
  */
 #ifdef DOXYGEN
-AP_DECLARE(void) ap_log_data(const char *file, int line, int module_index,
-                             int level, const server_rec *s, const char *label,
-                             const void *data, apr_size_t len, unsigned int flags);
+    AP_DECLARE(void)
+    ap_log_data(const char *file, int line, int module_index,
+                int level, const server_rec *s, const char *label,
+                const void *data, apr_size_t len, unsigned int flags);
 #else
 #ifdef AP_HAVE_C99
 /* need additional step to expand APLOG_MARK first */
 #define ap_log_data(...) ap_log_data__(__VA_ARGS__)
 /* need server_rec *sr = ... for the case if s is verbatim NULL */
-#define ap_log_data__(file, line, mi, level, s, ...)           \
-    do { const server_rec *sr__ = s; if (APLOG_MODULE_IS_LEVEL(sr__, mi, level)) \
-             ap_log_data_(file, line, mi, level, sr__, __VA_ARGS__);    \
-    } while(0)
+#define ap_log_data__(file, line, mi, level, s, ...)                \
+    do                                                              \
+    {                                                               \
+        const server_rec *sr__ = s;                                 \
+        if (APLOG_MODULE_IS_LEVEL(sr__, mi, level))                 \
+            ap_log_data_(file, line, mi, level, sr__, __VA_ARGS__); \
+    } while (0)
 #else
 #define ap_log_data ap_log_data_
 #endif
-AP_DECLARE(void) ap_log_data_(const char *file, int line, int module_index,
-                              int level, const server_rec *s, const char *label,
-                              const void *data, apr_size_t len, unsigned int flags);
+AP_DECLARE(void)
+ap_log_data_(const char *file, int line, int module_index,
+             int level, const server_rec *s, const char *label,
+             const void *data, apr_size_t len, unsigned int flags);
 #endif
 
 /**
@@ -627,23 +649,27 @@ AP_DECLARE(void) ap_log_data_(const char *file, int line, int module_index,
  * this function.
  */
 #ifdef DOXYGEN
-AP_DECLARE(void) ap_log_rdata(const char *file, int line, int module_index,
-                              int level, const request_rec *r, const char *label,
-                              const void *data, apr_size_t len, unsigned int flags);
+    AP_DECLARE(void)
+    ap_log_rdata(const char *file, int line, int module_index,
+                 int level, const request_rec *r, const char *label,
+                 const void *data, apr_size_t len, unsigned int flags);
 #else
 #ifdef AP_HAVE_C99
 /* need additional step to expand APLOG_MARK first */
 #define ap_log_rdata(...) ap_log_rdata__(__VA_ARGS__)
-#define ap_log_rdata__(file, line, mi, level, r, ...)           \
-    do { if (APLOG_R_MODULE_IS_LEVEL(r, mi, level)) \
-             ap_log_rdata_(file, line, mi, level, r, __VA_ARGS__);    \
-    } while(0)
+#define ap_log_rdata__(file, line, mi, level, r, ...)             \
+    do                                                            \
+    {                                                             \
+        if (APLOG_R_MODULE_IS_LEVEL(r, mi, level))                \
+            ap_log_rdata_(file, line, mi, level, r, __VA_ARGS__); \
+    } while (0)
 #else
 #define ap_log_rdata ap_log_rdata_
 #endif
-AP_DECLARE(void) ap_log_rdata_(const char *file, int line, int module_index,
-                               int level, const request_rec *r, const char *label,
-                               const void *data, apr_size_t len, unsigned int flags);
+AP_DECLARE(void)
+ap_log_rdata_(const char *file, int line, int module_index,
+              int level, const request_rec *r, const char *label,
+              const void *data, apr_size_t len, unsigned int flags);
 #endif
 
 /**
@@ -665,23 +691,27 @@ AP_DECLARE(void) ap_log_rdata_(const char *file, int line, int module_index,
  * this function.
  */
 #ifdef DOXYGEN
-AP_DECLARE(void) ap_log_cdata(const char *file, int line, int module_index,
-                              int level, const conn_rec *c, const char *label,
-                              const void *data, apr_size_t len, unsigned int flags);
+    AP_DECLARE(void)
+    ap_log_cdata(const char *file, int line, int module_index,
+                 int level, const conn_rec *c, const char *label,
+                 const void *data, apr_size_t len, unsigned int flags);
 #else
 #ifdef AP_HAVE_C99
 /* need additional step to expand APLOG_MARK first */
 #define ap_log_cdata(...) ap_log_cdata__(__VA_ARGS__)
-#define ap_log_cdata__(file, line, mi, level, c, ...)           \
-    do { if (APLOG_C_MODULE_IS_LEVEL(c, mi, level)) \
-             ap_log_cdata_(file, line, mi, level, c, __VA_ARGS__);    \
-    } while(0)
+#define ap_log_cdata__(file, line, mi, level, c, ...)             \
+    do                                                            \
+    {                                                             \
+        if (APLOG_C_MODULE_IS_LEVEL(c, mi, level))                \
+            ap_log_cdata_(file, line, mi, level, c, __VA_ARGS__); \
+    } while (0)
 #else
 #define ap_log_cdata ap_log_cdata_
 #endif
-AP_DECLARE(void) ap_log_cdata_(const char *file, int line, int module_index,
-                               int level, const conn_rec *c, const char *label,
-                               const void *data, apr_size_t len, unsigned int flags);
+AP_DECLARE(void)
+ap_log_cdata_(const char *file, int line, int module_index,
+              int level, const conn_rec *c, const char *label,
+              const void *data, apr_size_t len, unsigned int flags);
 #endif
 
 /**
@@ -705,132 +735,146 @@ AP_DECLARE(void) ap_log_cdata_(const char *file, int line, int module_index,
  * this function.
  */
 #ifdef DOXYGEN
-AP_DECLARE(void) ap_log_csdata(const char *file, int line, int module_index,
-                               int level, const conn_rec *c, const server_rec *s,
-                               const char *label, const void *data,
-                               apr_size_t len, unsigned int flags);
+    AP_DECLARE(void)
+    ap_log_csdata(const char *file, int line, int module_index,
+                  int level, const conn_rec *c, const server_rec *s,
+                  const char *label, const void *data,
+                  apr_size_t len, unsigned int flags);
 #else
 #ifdef AP_HAVE_C99
 /* need additional step to expand APLOG_MARK first */
 #define ap_log_csdata(...) ap_log_csdata__(__VA_ARGS__)
-#define ap_log_csdata__(file, line, mi, level, c, s, ...)              \
-    do { if (APLOG_CS_MODULE_IS_LEVEL(c, s, mi, level))                \
-             ap_log_csdata_(file, line, mi, level, c, s, __VA_ARGS__); \
-    } while(0)
+#define ap_log_csdata__(file, line, mi, level, c, s, ...)             \
+    do                                                                \
+    {                                                                 \
+        if (APLOG_CS_MODULE_IS_LEVEL(c, s, mi, level))                \
+            ap_log_csdata_(file, line, mi, level, c, s, __VA_ARGS__); \
+    } while (0)
 #else
 #define ap_log_cdata ap_log_cdata_
 #endif
-AP_DECLARE(void) ap_log_csdata_(const char *file, int line, int module_index,
-                                int level, const conn_rec *c, const server_rec *s,
-                                const char *label, const void *data,
-                                apr_size_t len, unsigned int flags);
+AP_DECLARE(void)
+ap_log_csdata_(const char *file, int line, int module_index,
+               int level, const conn_rec *c, const server_rec *s,
+               const char *label, const void *data,
+               apr_size_t len, unsigned int flags);
 #endif
 
-/**
- * Convert stderr to the error log
- * @param s The current server
- */
-AP_DECLARE(void) ap_error_log2stderr(server_rec *s);
+    /**
+     * Convert stderr to the error log
+     * @param s The current server
+     */
+    AP_DECLARE(void)
+    ap_error_log2stderr(server_rec *s);
 
-/**
- * Log the command line used to start the server.
- * @param p The pool to use for logging
- * @param s The server_rec whose process's command line we want to log.
- * The command line is logged to that server's error log.
- */
-AP_DECLARE(void) ap_log_command_line(apr_pool_t *p, server_rec *s);
+    /**
+     * Log the command line used to start the server.
+     * @param p The pool to use for logging
+     * @param s The server_rec whose process's command line we want to log.
+     * The command line is logged to that server's error log.
+     */
+    AP_DECLARE(void)
+    ap_log_command_line(apr_pool_t *p, server_rec *s);
 
-/**
- * Log common (various) MPM shared data at startup.
- * @param s The server_rec of the error log we want to log to.
- * Misc commonly logged data is logged to that server's error log.
- */
-AP_DECLARE(void) ap_log_mpm_common(server_rec *s);
+    /**
+     * Log common (various) MPM shared data at startup.
+     * @param s The server_rec of the error log we want to log to.
+     * Misc commonly logged data is logged to that server's error log.
+     */
+    AP_DECLARE(void)
+    ap_log_mpm_common(server_rec *s);
 
-/**
- * Log the current pid of the parent process
- * @param p The pool to use for processing
- * @param fname The name of the file to log to.  If the filename is not
- * absolute then it is assumed to be relative to ServerRoot.
- */
-AP_DECLARE(void) ap_log_pid(apr_pool_t *p, const char *fname);
+    /**
+     * Log the current pid of the parent process
+     * @param p The pool to use for processing
+     * @param fname The name of the file to log to.  If the filename is not
+     * absolute then it is assumed to be relative to ServerRoot.
+     */
+    AP_DECLARE(void)
+    ap_log_pid(apr_pool_t *p, const char *fname);
 
-/**
- * Remove the pidfile.
- * @param p The pool to use for processing
- * @param fname The name of the pid file to remove.  If the filename is not
- * absolute then it is assumed to be relative to ServerRoot.
- */
-AP_DECLARE(void) ap_remove_pid(apr_pool_t *p, const char *fname);
+    /**
+     * Remove the pidfile.
+     * @param p The pool to use for processing
+     * @param fname The name of the pid file to remove.  If the filename is not
+     * absolute then it is assumed to be relative to ServerRoot.
+     */
+    AP_DECLARE(void)
+    ap_remove_pid(apr_pool_t *p, const char *fname);
 
-/**
- * Retrieve the pid from a pidfile.
- * @param p The pool to use for processing
- * @param filename The name of the file containing the pid.  If the filename is not
- * absolute then it is assumed to be relative to ServerRoot.
- * @param mypid Pointer to pid_t (valid only if return APR_SUCCESS)
- */
-AP_DECLARE(apr_status_t) ap_read_pid(apr_pool_t *p, const char *filename, pid_t *mypid);
+    /**
+     * Retrieve the pid from a pidfile.
+     * @param p The pool to use for processing
+     * @param filename The name of the file containing the pid.  If the filename is not
+     * absolute then it is assumed to be relative to ServerRoot.
+     * @param mypid Pointer to pid_t (valid only if return APR_SUCCESS)
+     */
+    AP_DECLARE(apr_status_t)
+    ap_read_pid(apr_pool_t *p, const char *filename, pid_t *mypid);
 
-/** @see piped_log */
-typedef struct piped_log piped_log;
+    /** @see piped_log */
+    typedef struct piped_log piped_log;
 
-/**
- * Open the piped log process
- * @param p The pool to allocate out of
- * @param program The program to run in the logging process
- * @return The piped log structure
- * @note The log program is invoked as @p APR_PROGRAM_ENV,
- *      @see ap_open_piped_log_ex to modify this behavior
- */
-AP_DECLARE(piped_log *) ap_open_piped_log(apr_pool_t *p, const char *program);
+    /**
+     * Open the piped log process
+     * @param p The pool to allocate out of
+     * @param program The program to run in the logging process
+     * @return The piped log structure
+     * @note The log program is invoked as @p APR_PROGRAM_ENV,
+     *      @see ap_open_piped_log_ex to modify this behavior
+     */
+    AP_DECLARE(piped_log *)
+    ap_open_piped_log(apr_pool_t *p, const char *program);
 
-/**
- * Open the piped log process specifying the execution choice for program
- * @param p The pool to allocate out of
- * @param program The program to run in the logging process
- * @param cmdtype How to invoke program, e.g. APR_PROGRAM, APR_SHELLCMD_ENV, etc
- * @return The piped log structure
- */
-AP_DECLARE(piped_log *) ap_open_piped_log_ex(apr_pool_t *p,
-                                             const char *program,
-                                             apr_cmdtype_e cmdtype);
+    /**
+     * Open the piped log process specifying the execution choice for program
+     * @param p The pool to allocate out of
+     * @param program The program to run in the logging process
+     * @param cmdtype How to invoke program, e.g. APR_PROGRAM, APR_SHELLCMD_ENV, etc
+     * @return The piped log structure
+     */
+    AP_DECLARE(piped_log *)
+    ap_open_piped_log_ex(apr_pool_t *p,
+                         const char *program,
+                         apr_cmdtype_e cmdtype);
 
-/**
- * Close the piped log and kill the logging process
- * @param pl The piped log structure
- */
-AP_DECLARE(void) ap_close_piped_log(piped_log *pl);
+    /**
+     * Close the piped log and kill the logging process
+     * @param pl The piped log structure
+     */
+    AP_DECLARE(void)
+    ap_close_piped_log(piped_log *pl);
 
-/**
- * A function to return the read side of the piped log pipe
- * @param pl The piped log structure
- * @return The native file descriptor
- */
-AP_DECLARE(apr_file_t *) ap_piped_log_read_fd(piped_log *pl);
+    /**
+     * A function to return the read side of the piped log pipe
+     * @param pl The piped log structure
+     * @return The native file descriptor
+     */
+    AP_DECLARE(apr_file_t *)
+    ap_piped_log_read_fd(piped_log *pl);
 
-/**
- * A function to return the write side of the piped log pipe
- * @param pl The piped log structure
- * @return The native file descriptor
- */
-AP_DECLARE(apr_file_t *) ap_piped_log_write_fd(piped_log *pl);
+    /**
+     * A function to return the write side of the piped log pipe
+     * @param pl The piped log structure
+     * @return The native file descriptor
+     */
+    AP_DECLARE(apr_file_t *)
+    ap_piped_log_write_fd(piped_log *pl);
 
-/**
- * hook method to generate unique id for connection or request
- * @ingroup hooks
- * @param c the conn_rec of the connections
- * @param r the request_req (may be NULL)
- * @param id the place where to store the unique id
- * @return OK or DECLINE
- */
-AP_DECLARE_HOOK(int, generate_log_id,
-                (const conn_rec *c, const request_rec *r, const char **id))
-
+    /**
+     * hook method to generate unique id for connection or request
+     * @ingroup hooks
+     * @param c the conn_rec of the connections
+     * @param r the request_req (may be NULL)
+     * @param id the place where to store the unique id
+     * @return OK or DECLINE
+     */
+    AP_DECLARE_HOOK(int, generate_log_id,
+                    (const conn_rec *c, const request_rec *r, const char **id))
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif  /* !APACHE_HTTP_LOG_H */
+#endif /* !APACHE_HTTP_LOG_H */
 /** @} */

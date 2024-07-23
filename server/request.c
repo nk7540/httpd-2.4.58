@@ -54,8 +54,6 @@
 #include <stdarg.h>
 #endif
 
-#include "mockfs.h"
-
 /* we know core's module_index is 0 */
 #undef APLOG_MODULE_INDEX
 #define APLOG_MODULE_INDEX AP_CORE_MODULE_INDEX
@@ -196,11 +194,6 @@ static int walk_location_and_if(request_rec *r)
 AP_DECLARE(int)
 ap_process_request_internal(request_rec *r)
 {
-    /* @TMP test script */
-    createNode();
-    return 0;
-    /* test script END */
-
     int access_status = DECLINED;
     int file_req = (r->main && r->filename);
     core_server_config *sconf =
@@ -462,10 +455,10 @@ ap_process_request_internal(request_rec *r)
      * in mod-proxy for r->proxyreq && r->parsed_uri.scheme
      *                              && !strcmp(r->parsed_uri.scheme, "http")
      */
-    if ((access_status = ap_run_type_checker(r)) != OK)
-    {
-        return decl_die(access_status, "find types", r);
-    }
+    // if ((access_status = ap_run_type_checker(r)) != OK)
+    // {
+    //     return decl_die(access_status, "find types", r);
+    // }
 
     if ((access_status = ap_run_fixups(r)) != OK)
     {
