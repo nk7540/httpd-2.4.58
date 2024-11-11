@@ -35,7 +35,7 @@
 #include "scoreboard.h"
 
 // server/mpm/mpmt_os2/mpmt_os2.c
-server_rec *ap_server_conf;
+// server_rec *ap_server_conf;
 
 // server/mpm/worker/worker.c
 /* The structure used to pass unique initialization info to each thread */
@@ -399,7 +399,7 @@ void server_main()
     // main();
     printf("main()\n");
     int argc;
-    const char *const argv[] = {"/usr/local/apache/bin/httpd"};
+    const char *const argv[] = {"/usr/local/apache/bin/httpd", "-DDEBUG", "-DONE_PROCESS", "-d", "/usr/local/apache"};
     const char *const *argv_ptr = argv;
     char c;
     int showcompile = 0, showdirectives = 0;
@@ -631,55 +631,55 @@ void server_main()
     /* sort hooks here to make sure pre_config hooks are sorted properly */
     apr_hook_sort_all();
 
-    // if (ap_run_pre_config(pconf, plog, ptemp) != OK)
-    // {
-    //     ap_log_error(APLOG_MARK, APLOG_EMERG, 0, NULL,
-    //                  APLOGNO(00017) "Pre-configuration failed, exiting");
-    //     destroy_and_exit_process(process, 1);
-    // }
-    // printf("ap_run_pre_config() success\n");
+    if (ap_run_pre_config(pconf, plog, ptemp) != OK)
+    {
+        ap_log_error(APLOG_MARK, APLOG_EMERG, 0, NULL,
+                     APLOGNO(00017) "Pre-configuration failed, exiting");
+        destroy_and_exit_process(process, 1);
+    }
+    printf("ap_run_pre_config() success\n");
 
-    // if (ap_process_config_tree(ap_server_conf, ap_conftree, process->pconf,
-    //                            ptemp) != OK)
-    // {
-    //     destroy_and_exit_process(process, 1);
-    // }
-    // printf("ap_process_config_tree() success\n");
-    // ap_fixup_virtual_hosts(pconf, ap_server_conf);
-    // ap_fini_vhost_config(pconf, ap_server_conf);
-    // /*
-    //  * Sort hooks again because ap_process_config_tree may have add modules
-    //  * and hence hooks. This happens with mod_perl and modules written in
-    //  * perl.
-    //  */
-    // apr_hook_sort_all();
+    if (ap_process_config_tree(ap_server_conf, ap_conftree, process->pconf,
+                               ptemp) != OK)
+    {
+        destroy_and_exit_process(process, 1);
+    }
+    printf("ap_process_config_tree() success\n");
+    ap_fixup_virtual_hosts(pconf, ap_server_conf);
+    ap_fini_vhost_config(pconf, ap_server_conf);
+    /*
+     * Sort hooks again because ap_process_config_tree may have add modules
+     * and hence hooks. This happens with mod_perl and modules written in
+     * perl.
+     */
+    apr_hook_sort_all();
 
-    // if (ap_run_check_config(pconf, plog, ptemp, ap_server_conf) != OK)
-    // {
-    //     ap_log_error(APLOG_MARK, APLOG_EMERG, 0, NULL,
-    //                  APLOGNO(00018) "Configuration check failed, exiting");
-    //     destroy_and_exit_process(process, 1);
-    // }
-    // printf("ap_run_check_config() success\n");
+    if (ap_run_check_config(pconf, plog, ptemp, ap_server_conf) != OK)
+    {
+        ap_log_error(APLOG_MARK, APLOG_EMERG, 0, NULL,
+                     APLOGNO(00018) "Configuration check failed, exiting");
+        destroy_and_exit_process(process, 1);
+    }
+    printf("ap_run_check_config() success\n");
 
-    // apr_pool_clear(plog);
-    // if (ap_run_open_logs(pconf, plog, ptemp, ap_server_conf) != OK)
-    // {
-    //     ap_log_error(APLOG_MARK, APLOG_EMERG, 0, NULL,
-    //                  APLOGNO(00019) "Unable to open logs, exiting");
-    //     destroy_and_exit_process(process, 1);
-    // }
-    // printf("ap_run_open_logs() success\n");
+    apr_pool_clear(plog);
+    if (ap_run_open_logs(pconf, plog, ptemp, ap_server_conf) != OK)
+    {
+        ap_log_error(APLOG_MARK, APLOG_EMERG, 0, NULL,
+                     APLOGNO(00019) "Unable to open logs, exiting");
+        destroy_and_exit_process(process, 1);
+    }
+    printf("ap_run_open_logs() success\n");
 
-    // if (ap_run_post_config(pconf, plog, ptemp, ap_server_conf) != OK)
-    // {
-    //     ap_log_error(APLOG_MARK, APLOG_EMERG, 0, NULL,
-    //                  APLOGNO(00020) "Configuration Failed, exiting");
-    //     destroy_and_exit_process(process, 1);
-    // }
-    // printf("ap_run_post_config() success\n");
+    if (ap_run_post_config(pconf, plog, ptemp, ap_server_conf) != OK)
+    {
+        ap_log_error(APLOG_MARK, APLOG_EMERG, 0, NULL,
+                     APLOGNO(00020) "Configuration Failed, exiting");
+        destroy_and_exit_process(process, 1);
+    }
+    printf("ap_run_post_config() success\n");
 
-    // apr_pool_destroy(ptemp);
+    apr_pool_destroy(ptemp);
 
     ap_run_optional_fn_retrieve();
 

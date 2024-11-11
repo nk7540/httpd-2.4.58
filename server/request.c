@@ -455,8 +455,7 @@ ap_process_request_internal(request_rec *r)
      * in mod-proxy for r->proxyreq && r->parsed_uri.scheme
      *                              && !strcmp(r->parsed_uri.scheme, "http")
      */
-    // if ((access_status = ap_run_type_checker(r)) != OK)
-    // {
+    // if ((access_status = ap_run_type_checker(r)) != OK) {
     //     return decl_die(access_status, "find types", r);
     // }
 
